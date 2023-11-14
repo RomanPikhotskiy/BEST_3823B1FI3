@@ -38,9 +38,10 @@ int determinant(int matrix[], int size){
         int new_mat[a - 1];
         for(int j = a ; j < size ; j ++ ){
             if ( j % a != i)
-            new_mat[j] = matrix[j];
+            new_mat[j - a] = matrix[j];
         }
     pop += pow(-1, 1 + i) * matrix[i] * determinant(new_mat, a - 1);
     }
+    return pop;
     return 0;
 }
