@@ -9,39 +9,57 @@ int determinant(int matrix[], int size){
         return -404;
     }
 
-    if ( size == 3){
-    for (int i = 0 ; i < a ; i ++ ){
-        b = 1 ;
-        for (int j = 0 ; j < a ; j ++ )
-            b *= matrix[((i + j) % a) + j * a];
-        opr += b ;
+    if ( size == 9){
+    return matrix[0] * matrix[4] * matrix[8] + matrix[1] * matrix[5] * matrix[6] + matrix[2] * matrix[3] * matrix[7] - matrix[2] * matrix[4] * matrix[6] - matrix[1] * matrix[3] * matrix[8] - matrix[0] * matrix[5] * matrix[7];
     }
-    for (int i = a - 1 ; i >= 0 ; i -- ){
-        b = 1 ;
-        for (int j = 0 ; j < a ; j ++ )
-            {
-            int h = fabs(i - j);
-            if ( i - j < 0)
-            h = a + (i - j);
-            b *= matrix[(h % a) + j * a];
-            }
-        opr -= b ;
-    }
-    return opr;
+    
+
+    if (size == 4){
+        return matrix[0]*matrix[3] - matrix[1]*matrix[2];
     }
 
-    if(size == 4) 
-    return matrix[0]*matrix[3] - matrix[1]*matrix[2];
-    int pop ;
-    for (int i = 0 ; i < a ; i ++ )
-    {
-        int new_mat[a - 1];
-        for(int j = a ; j < size ; j ++ ){
-            if ( j % a != i)
-            new_mat[j - a] = matrix[j];
+    int k = 0 ;
+    for (int i = 1 ; i < a ; i ++ ){
+        for (int j = 0 ; j < a ; j ++ ){
+            if ( j % a != 0 ){
+                k += 1;
+            }
         }
-    pop += pow(-1, 1 + i) * matrix[i] * determinant(new_mat, a - 1);
     }
-    return pop;
-    return 0;
+    int nm[k];
+    int c = 0 ;
+    int n = 1 ;
+    int answer = 0 ;
+    for (int i = 1 ; i < a ; i ++ ){
+        for (int j = 0 ; j < a ; j ++ ){
+            if ( j % a != 0 ){
+                nm[c] = matrix[i * a + j] ;
+                
+                c += 1 ;
+            }
+        }
+    }
+    
+    c = 0 ;
+    answer += matrix[0] * determinant(nm, sizeof(nm)/sizeof(int));
+    for (int d = 1 ; d < a ; d ++ ){
+        c = 0 ;
+        for (int i = 1 ; i < a ; i ++ ){
+            for (int j = 0 ; j < a ; j ++ ){
+                if ( j % (i * a) != d ){
+                    nm[c] = matrix[i * a + j] ;
+                    
+                    c += 1 ;
+                }
+            }
+        }
+        int jj = -1;
+        for (int l = 1; l <= d + 1 ; l++ )
+        jj *= -1 ;
+
+        n += 1 ;
+        
+        answer += matrix[d] * determinant(nm, sizeof(nm)/sizeof(int)) * jj;
+    }
+    return answer;
 }
