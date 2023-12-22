@@ -1,3 +1,5 @@
+#include <math.h>
+
 int QuadraticEquation(double a, double b, double c){
     float D = pow(4, 2) - 4 * a * c ;
     if ( D == 0){
