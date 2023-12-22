@@ -13,12 +13,12 @@ void test_calc_size() {
 
 
 
-    TEST_ASSERT(calcsize(arr1) == sizeof(arr1));
-    TEST_ASSERT(calcsize(arr2) == sizeof(arr2));
-    TEST_ASSERT(calcsize(arr3) == sizeof(arr3));
-    TEST_ASSERT(calcsize(arr4) == sizeof(arr4));
-    TEST_ASSERT(calcsize(arr5) == sizeof(arr5));
-    TEST_ASSERT(calcsize(arr6) == sizeof(arr6));
+    TEST_ASSERT(calcsize(arr1, 1) == sizeof(arr1));
+    TEST_ASSERT(calcsize(arr2, 2) == sizeof(arr2));
+    TEST_ASSERT(calcsize(arr3, 3) == sizeof(arr3));
+    TEST_ASSERT(calcsize(arr4, 4) == sizeof(arr4));
+    TEST_ASSERT(calcsize(arr5, 5) == sizeof(arr5));
+    TEST_ASSERT(calcsize(arr6, 6) == sizeof(arr6));
     
 }
 
