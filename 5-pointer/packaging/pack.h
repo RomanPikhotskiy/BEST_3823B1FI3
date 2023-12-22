@@ -1,7 +1,6 @@
 #include <math.h>
 
 unsigned long long pack_ull(unsigned char arr[], int size){
-    return 0 ;
     if (size > sizeof(unsigned long long)) {
         return 0;
     }
